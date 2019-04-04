@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Shortest Job First Scheduler</title>
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="bootstrap/js/bootstrap.min.js"> </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" role="application" src="index.js"></script>
+
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+
+<body class="bg-dark">
+    <div class='container'>
+        <h1 class="text-white">Shortest Job First Scheduler</h1>
+        
+        <div class='row'>
+            <div class="form-inline">
+                <input class="form-control my-5 mr-2" id="burstTime" type="text" placeholder="Enter burst time">
+                <button class="btn btn-info my-5 mr-2" id='createProcess'>Add new process</button>
+            </div>
+
+        </div>
+        <br>
+        <hr>
+<!-- Gantt chart  -->
+        <div class="row">
+            <div class = "col-6">
+                <div class="row" id = "ganttChart0">
+
+                </div>
+            </div>
+
+            <div class = "col-6">
+                <div class="row" id = "ganttChart1">
+
+                </div>
+            </div>
+            
+
+            
+
+        </div>
+<!-- Gantt chart  -->
+
+<!-- Process table -->
+        
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                        <div class="col-3">
+                                <ol id='processList0' class="mr-2">
+                                        <div class="text-white"> <strong>Process Name </strong><br></div>
+                                    </ol>
+                        </div>
+                        <div class="col-3">
+                                <ol id='burstTimeList0' class="mr-2">
+                                        <div class="text-white"> <strong>Burst time(ms)</strong> <br></div>
+                                    </ol> 
+                        </div>
+
+                </div>
+                    
+            </div>
+
+            <div class="col-6">
+                <div class="row">
+                        <div class="col-3">
+                                <ol id='processList1' class="mr-2">
+                                        <div class="text-white"> <strong>Process Name </strong><br></div>
+                                    </ol>
+                        </div>
+                        <div class="col-3">
+                                <ol id='burstTimeList1' class="mr-2">
+                                        <div class="text-white"> <strong>Burst time(ms)</strong> <br></div>
+                                    </ol> 
+                        </div>
+                </div>
+            </div>
+                         
+        </div>
+
+    </div>
+<!-- Process table -->
+
+</body>
+
+</html>
