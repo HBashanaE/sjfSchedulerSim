@@ -70,22 +70,15 @@ $(function () {
                             break;
                         }
 
+                        console.log('length ' + processList0.length);
                         for(var i = 0;i< processList0.length; i++ ){
+                            console.log('i '+i);
                             if(processList0[i][1] > x){
                                 console.log('y');
-                                intermArray = processList0.splice(0,i)
-                                $.each(intermArray, function(index, value){
-                                    console.log(value); 
-                                });
-                                intermArray.sort(function(a,b){
+                                processList0.slice(i).sort(function(a,b){
                                     return a[2]- b[2]
                                 });
-                                processList0.concat(intermArray);
-                                $.each(processList0, function(index, value){
-                                    console.log(value); 
-                                });
                                 z = 1;
-                                x += processList0[0][1]
                                 processList1.push(processList0.shift());
                                 break;
                             }
