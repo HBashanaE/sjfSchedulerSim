@@ -6,9 +6,11 @@ $(function () {
             var processList0 = [];
             var processList1 = [];
             var burstTimeInput = parseInt($("#burstTime").val());
-            var arivalTimeInput =parseInt($("#arivalTime").val());
+            var arivalTimeInput = parseInt($("#arivalTime").val());
+            console.log(burstTimeInput);
+            console.log(arivalTimeInput);
             if($.isNumeric(burstTimeInput) && $.isNumeric(arivalTimeInput)){
-                if(burstTimeInput!='' && arivalTimeInput!= ''){
+                if(burstTimeInput!== '' && arivalTimeInput!== '' ){
 
                     $("#burstTime").val("");
                     $("#arivalTime").val("");
