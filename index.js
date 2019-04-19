@@ -48,7 +48,7 @@ $(function () {
                         $('#processList0').append("<li class='text-white'>" + value[0] + "</li>");
                         $('#arivalTimeList0').append("<li class='text-white'>" + value[1]+ "</li>");
                         $('#burstTimeList0').append("<li class='text-white'>" + value[2] + "</li>");
-                        $('#ganttChart0').append("<div style='width:" + value[2] + "px;height:100px;border:1px solid #fff; background-color:#f15468'></div>");
+                        $('#ganttChart0').append("<div style='width:" + value[2] + "px;height:100px;border:1px solid #fff; background-color:#2b3de1'></div>");
                     });
 
 
@@ -75,13 +75,7 @@ $(function () {
                                 intermArray.sort(function(a,b){
                                     return a[2]- b[2]
                                 });
-                                $.each(processList0, function(index, value){
-                                    intermArray.push(value); 
-                                });
-                                $.each(intermArray, function(index, value){
-                                    console.log(value); 
-                                });
-                                processList0 = intermArray;
+                                processList0 = intermArray.concat(processList0);
                                 z = 1;
                                 processList1.push(processList0.shift());
                                 break;
@@ -95,7 +89,6 @@ $(function () {
                             x += processList0[0][1]
                             processList1.push(processList0.shift());
                         }
-
                     }
                         
 
@@ -108,7 +101,7 @@ $(function () {
                     $('#burstTimeList1').append("<div class='text-white'> <strong>Burst time(ms)</strong> <br></div>");
 
                     $.each(processList1,function(index,value){
-                        $('#ganttChart1').append("<div style='width:" + value[2] + "px;height:100px;border:1px solid #fff; background-color:#f15468'></div>");
+                        $('#ganttChart1').append("<div style='width:" + value[2] + "px;height:100px;border:1px solid #fff; background-color:#2b3de1'></div>");
                         $('#processList1').append("<li class='text-white'>" + value[0] + "</li>");
                         $('#arivalTimeList1').append("<li class='text-white'>" + value[1]+ "</li>");
                         $('#burstTimeList1').append("<li class='text-white'>" + value[2] + "</li>");
