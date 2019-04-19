@@ -62,7 +62,6 @@ $(function () {
                     processList1 = [];
                     processList1.push(processList0.shift());
 
-                    //console.log(processList0);
                     while(true){
                         var z = 0;
 
@@ -70,14 +69,19 @@ $(function () {
                             break;
                         }
 
-                        console.log('length ' + processList0.length);
                         for(var i = 0;i< processList0.length; i++ ){
-                            console.log('i '+i);
                             if(processList0[i][1] > x){
-                                console.log('y');
-                                processList0.slice(i).sort(function(a,b){
+                                intermArray = processList0.splice(0,i);
+                                intermArray.sort(function(a,b){
                                     return a[2]- b[2]
                                 });
+                                $.each(processList0, function(index, value){
+                                    intermArray.push(value); 
+                                });
+                                $.each(intermArray, function(index, value){
+                                    console.log(value); 
+                                });
+                                processList0 = intermArray;
                                 z = 1;
                                 processList1.push(processList0.shift());
                                 break;
@@ -86,17 +90,13 @@ $(function () {
                         
                         if(!z){
                             processList0.sort(function(a,b){
-                                return a[2]- b[2]
+                                return a[2] - b[2];
                             });
                             x += processList0[0][1]
                             processList1.push(processList0.shift());
                         }
 
                     }
-                    //console.log(processList1); 
-                    // $.each(processList1, function(index, value){
-                    //     console.log(value); 
-                    // });
                         
 
                     $('#ganttChart1').empty();
