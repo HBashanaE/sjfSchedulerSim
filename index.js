@@ -5,10 +5,9 @@ $(function () {
         function () {
             var processList0 = [];
             var processList1 = [];
+            var processList2 = [];
             var burstTimeInput = parseInt($("#burstTime").val());
             var arivalTimeInput = parseInt($("#arivalTime").val());
-            console.log(burstTimeInput);
-            console.log(arivalTimeInput);
             if($.isNumeric(burstTimeInput) && $.isNumeric(arivalTimeInput)){
                 if(burstTimeInput!== '' && arivalTimeInput!== '' ){
 
@@ -16,9 +15,9 @@ $(function () {
                     $("#arivalTime").val("");
  
                     var processItem0 = [];
+
                     processItem0.push(arivalTimeInput);
                     processItem0.push(burstTimeInput);
-
                     processItemList.push(processItem0);
                     
                     processItemList.sort(function (a, b) {  
@@ -27,16 +26,64 @@ $(function () {
                         return valA-valB;  
                     });
 
-                    var inc = 0;
-                    $.each(processItemList,function(a,b){
-                        processName = "Process"+inc;
+                    
+                    var currentTime = processItem0[0][0];
+                    // var currentWaitingTime = 0;
+                    // var currentTurnaroundTime = 0;
+
+                    for(var i = 0; i<processItemList.length; i++){
+                        processName = "Process"+i;
+                        var arivalTime = processItemList[i][0];
+                        var burstTime = processItemList[i][1];
                         var processItem1 = [];
-                        processItem1.push(processName);
-                        processItem1.push(b[0]);
-                        processItem1.push(b[1]);
-                        processList0.push(processItem1);
-                        inc++;
-                    });            
+                        if(currentTime < arivalTime){
+                            // processItem1.push('Waiting');
+                            // processItem1.push(currentTime);
+                            // processItem1.push(arivalTime - currentTime);
+
+                            // processList0.push(processItem1);
+
+                            // currentTime = arivalTime;
+
+                            // processItem1 = [];
+                            // processItem1.push(processName);
+                            // processItem1.push(arivalTime);
+                            // processItem1.push(burstTime);
+                            // processItem1.push(currentTime - arivalTime);
+                            // processItem1.push(currentTime);
+
+                            // processList0.push(processItem1);
+                            // currentTime += processItemList[i][1];
+
+                        }else{
+                            processItem1.push(processName);
+                            processItem1.push(arivalTime);
+                            processItem1.push(burstTime);
+                            processItem1.push(currentTime - arivalTime);
+                            processItem1.push(currentTime);
+
+                            processList0.push(processItem1);
+                            currentTime += processItemList[i][1];
+                        }
+                    }
+
+                    // var inc = 0;
+                    // $.each(processItemList,function(a,b){
+                    //     processName = "Process"+inc;
+                    //     var processItem1 = [];
+                    //     if(currentTime < b[0]){
+
+                    //     }else{
+                    //         processItem1.push(processName);
+                    //         processItem1.push(b[0]);
+                    //         processItem1.push(b[1]);
+
+                    //         processList0.push(processItem1);
+                    //         currentTime += b[1];
+                    //     }
+                        
+                    //     inc++;
+                    // });            
 
                     $('#ganttChart0').empty();
                     $('#processList0').empty();
@@ -47,10 +94,15 @@ $(function () {
                     $('#burstTimeList0').append("<div class='text-white'> <strong>Burst time(ms)</strong> <br></div>");
                     
                     $.each(processList0, function (index, value) {
-                        $('#processList0').append("<li class='text-white'>" + value[0] + "</li>");
-                        $('#arivalTimeList0').append("<li class='text-white'>" + value[1]+ "</li>");
-                        $('#burstTimeList0').append("<li class='text-white'>" + value[2] + "</li>");
-                        $('#ganttChart0').append("<div style='width:" + value[2] + "px;height:100px;border:1px solid #fff; background-color:#2b3de1'></div>");
+                        if(value[0] === 'Waiting'){
+                            $('#ganttChart0').append("<div style='width:" + value[2] + "px;height:100px;border:1px solid #fff; background-color:#ffffff'></div>");
+                        }else{
+                            $('#processList0').append("<li class='text-white'>" + value[0] + "</li>");
+                            $('#arivalTimeList0').append("<li class='text-white'>" + value[1]+ "</li>");
+                            $('#burstTimeList0').append("<li class='text-white'>" + value[2] + "</li>");
+                            $('#ganttChart0').append("<div style='width:" + value[2] + "px;height:100px;border:1px solid #fff; background-color:#2b3de1'></div>");
+                        }
+                        
                     });
 
 
@@ -92,7 +144,43 @@ $(function () {
                             processList1.push(processList0.shift());
                         }
                     }
-                        
+//--------------------------------------------------------------------------------------------
+                    var currentTime = processList1[0][1];
+                    for(var i = 0; i<processList1.length; i++){
+                        var arivalTime = processList1[i][1];
+                        var burstTime = processList1[i][2];
+                        var processItem1 = [];
+                        if(currentTime < arivalTime){
+                            processItem1.push('Waiting');
+                            processItem1.push(currentTime);
+                            processItem1.push(arivalTime - currentTime);
+
+                            processList2.push(processItem1);
+
+                            currentTime = arivalTime;
+
+                            processItem1 = [];
+                            processItem1.push(processName);
+                            processItem1.push(arivalTime);
+                            processItem1.push(burstTime);
+                            processItem1.push(currentTime - arivalTime);
+                            processItem1.push(currentTime);
+
+                            processList2.push(processItem1);
+                            currentTime += processItemList[i][1];
+
+                        }else{
+                            processItem1.push(processName);
+                            processItem1.push(arivalTime);
+                            processItem1.push(burstTime);
+                            processItem1.push(currentTime - arivalTime);
+                            processItem1.push(currentTime);
+
+                            processList2.push(processItem1);
+                            currentTime += processItemList[i][1];
+                        }
+                    }  
+//-----------------------------------------------------------------------------------------------                      
 
                     $('#ganttChart1').empty();
                     $('#processList1').empty();
@@ -102,12 +190,15 @@ $(function () {
                     $('#burstTimeList1').empty();
                     $('#burstTimeList1').append("<div class='text-white'> <strong>Burst time(ms)</strong> <br></div>");
 
-                    $.each(processList1,function(index,value){
-                        $('#ganttChart1').append("<div style='width:" + value[2] + "px;height:100px;border:1px solid #fff; background-color:#2b3de1'></div>");
-                        $('#processList1').append("<li class='text-white'>" + value[0] + "</li>");
-                        $('#arivalTimeList1').append("<li class='text-white'>" + value[1]+ "</li>");
-                        $('#burstTimeList1').append("<li class='text-white'>" + value[2] + "</li>");
-
+                    $.each(processList2,function(index,value){
+                        if(value[0] === 'Waiting'){
+                            $('#ganttChart1').append("<div style='width:" + value[2] + "px;height:100px;border:1px solid #fff; background-color:#000'></div>");
+                        }else{
+                            $('#ganttChart1').append("<div style='width:" + value[2] + "px;height:100px;border:1px solid #fff; background-color:#2b3de1'></div>");
+                            $('#processList1').append("<li class='text-white'>" + value[0] + "</li>");
+                            $('#arivalTimeList1').append("<li class='text-white'>" + value[1]+ "</li>");
+                            $('#burstTimeList1').append("<li class='text-white'>" + value[2] + "</li>");
+                        }
                     });
 
                 }else{
