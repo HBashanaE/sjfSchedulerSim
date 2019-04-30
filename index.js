@@ -58,6 +58,7 @@ $(function () {
                             processItem1.push(burstTime);
                             processItem1.push(currentTime - arivalTime);
                             processItem1.push(currentTime);
+                            turnaroundTime0 += currentTime - arivalTime + burstTime;
 
                             processList0X.push(processItem1);
                             currentTime += burstTime;
@@ -69,6 +70,7 @@ $(function () {
                             processItem1.push(currentTime - arivalTime);
                             processItem1.push(currentTime);
                             waitingTime0 += currentTime - arivalTime;
+                            turnaroundTime0 += currentTime - arivalTime + burstTime;
 
                             processList0X.push(processItem1);
                             currentTime += burstTime;
@@ -88,8 +90,7 @@ $(function () {
                             processItem1.push(currentTime - arivalTime);
                             processItem1.push(currentTime);
 
-                            processList0.push(processItem1);
-                            
+                            processList0.push(processItem1);     
                     }
             
                     //clear
@@ -111,19 +112,15 @@ $(function () {
                             $('#burstTimeList0').append("<li class='text-white'>" + value[2] + "</li>");
                             $('#ganttChart0').append("<div style='width:" + value[2] + "px;height:100px;border:1px solid #fff; background-color:#2b3de1'></div>");
                         }
-                        
                     });
                     //display waiting timeand turnaround time
                     $('#waitingTime0').text("Waiting time: "+(waitingTime0/processItemList.length));
                     $('#turnaroundTime0').text("Turnaround time: "+(turnaroundTime0/processItemList.length));
 
-
-                    
                     processList0.sort(function(a,b){
                         return a[1]- b[1] || a[2] - b[2];
                     })                     
 
-                    
                     var x = processList0[0][1] + processList0[0][2]; // arival time+burst time of first process
                     processList1 = [];
                     processList1.push(processList0.shift());
@@ -158,8 +155,6 @@ $(function () {
                         }
                     }
 
-                    
-
                     //add intervals
                     var currentTime = processList1[0][1]
                     for(var i = 0; i<processList1.length; i++){
@@ -182,6 +177,7 @@ $(function () {
                             processItem1.push(burstTime);
                             processItem1.push(currentTime - arivalTime);
                             processItem1.push(currentTime);
+                            turnaroundTime0 += currentTime - arivalTime + burstTime;
 
                             processList2.push(processItem1);
                             currentTime += burstTime;
@@ -193,6 +189,7 @@ $(function () {
                             processItem1.push(currentTime - arivalTime);
                             processItem1.push(currentTime);
                             waitingTime1 += currentTime - arivalTime;
+                            turnaroundTime1 += currentTime - arivalTime + burstTime;
 
                             processList2.push(processItem1);
                             currentTime += burstTime;
@@ -235,4 +232,3 @@ $(function () {
         }
     ) 
 })
-
