@@ -60,7 +60,7 @@ $(function () {
                             processItem1.push(currentTime);
 
                             processList0X.push(processItem1);
-                            currentTime += processItemList[i][1];
+                            currentTime += burstTime;
 
                         }else{
                             processItem1.push(processName);
@@ -71,7 +71,7 @@ $(function () {
                             waitingTime0 += currentTime - arivalTime;
 
                             processList0X.push(processItem1);
-                            currentTime += processItemList[i][1];
+                            currentTime += burstTime;
                         }
                     }
 
@@ -158,8 +158,10 @@ $(function () {
                         }
                     }
 
+                    
+
                     //add intervals
-                    var currentTime = processList1[0][1];
+                    var currentTime = processList1[0][1]
                     for(var i = 0; i<processList1.length; i++){
                         var processName = processList1[i][0];
                         var arivalTime = processList1[i][1];
@@ -182,7 +184,7 @@ $(function () {
                             processItem1.push(currentTime);
 
                             processList2.push(processItem1);
-                            currentTime += processItemList[i][1];
+                            currentTime += burstTime;
 
                         }else{
                             processItem1.push(processName);
@@ -193,7 +195,7 @@ $(function () {
                             waitingTime1 += currentTime - arivalTime;
 
                             processList2.push(processItem1);
-                            currentTime += processItemList[i][1];
+                            currentTime += burstTime;
                         }
                     }                      
 
