@@ -14,7 +14,7 @@
     <!-- <link rel="stylesheet" href="styles.css"> -->
 </head>
 
-<body class="bg-dark">
+<body style="background-color:black">
     <div class='container'>
         <h1 class="text-white">Shortest Job First Scheduler</h1>
         
@@ -47,6 +47,14 @@
         <div class="row">
             <div class="col-6">
                 <div class="row">
+                    <div class="col-4">
+                        <p class="text-white" id="waitingTime0">Waiting time: </p>
+                    </div> 
+                    <div class="col-4">
+                        <p class="text-white" id="turnaroundTime0">Turnaround time: </p>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-3">
                         <ol id='processList0' class="mr-2">
                             <div class="text-white"> <strong>Process Name </strong><br></div>
@@ -66,18 +74,26 @@
             </div>
 
             <div class="col-6">
+                    <div class="row">
+                            <div class="col-4">
+                                <p class="text-white" id="waitingTime1">Waiting time: </p>
+                            </div>
+                            <div class="col-4">
+                                <p class="text-white" id="turnaroundTime1">Turnaround time: </p>
+                            </div>
+                        </div>
                 <div class="row">
-                    <div class="col-2">
+                    <div class="col-3">
                         <ol id='processList1' class="mr-2">
                             <div class="text-white"> <strong>Process Name </strong><br></div>
                         </ol>
                     </div>
-                    <div class="col-2">
+                    <div class="col-3">
                             <ol id='arivalTimeList1' class="mr-2">
                                 <div class="text-white"> <strong>Process Name </strong><br></div>
                             </ol>
                         </div>
-                    <div class="col-2">
+                    <div class="col-3">
                         <ol id='burstTimeList1' class="mr-2">
                             <div class="text-white"> <strong>Burst time(ms)</strong> <br></div>
                         </ol> 
