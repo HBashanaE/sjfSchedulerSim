@@ -11,8 +11,8 @@ $(function () {
             var arivalTimeInput = parseInt($("#arivalTime").val());
             var waitingTime0 = 0;
             var waitingTime1 = 0;
-            var turnaroundtime0 = 0;
-            var turnaroundtime1 = 0;
+            var turnaroundTime0 = 0;
+            var turnaroundTime1 = 0;
 
             if($.isNumeric(burstTimeInput) && $.isNumeric(arivalTimeInput)){ //check whether the inputs are all numeric
                 if(burstTimeInput!== '' && arivalTimeInput!== '' ){ //check wether inputs are not empty
